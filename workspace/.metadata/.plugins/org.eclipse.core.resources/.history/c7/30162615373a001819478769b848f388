@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package InputFormsTestScripts;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import Browser.SelectBrowser;
+
+/**
+ * @author LakshmananDeepthy
+ *
+ */
+public class CheckBoxTestScripts {
+	
+	@Test
+	WebDriver driver = SelectBrowser.selectBrowserandURL("FireFox", "http://www.seleniumeasy.com/test/");
+	
+	
+
+}

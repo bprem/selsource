@@ -1,0 +1,36 @@
+/**
+ * 
+ */
+package TestScripts;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
+
+import Browser.SelectBrowser;
+import InputFormsPageObjects.InputFormsElements;
+
+/**
+ * @author LakshmananDeepthy
+ *
+ */
+
+@Test
+public class InputformsTestScripts {
+
+	public void testScripts() {
+	
+	
+WebDriver driver = SelectBrowser.selectBrowserandURL("Chrome", "http://www.seleniumeasy.com/test/");
+
+InputFormsElements tc1 = PageFactory.initElements(driver, InputFormsElements.class);
+
+tc1.inputForm1();
+
+	
+	tc1.inputForm2("5","5");
+
+	
+	}
+	
+}

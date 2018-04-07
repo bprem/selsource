@@ -1,0 +1,36 @@
+package Test;
+
+import java.util.ArrayList;
+
+public class CollectionsExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//ArrayList
+		
+		ArrayList<Integer> al = new ArrayList<>();
+		//to add in arraylist
+		al.add(123);
+		al.add(258);
+		al.add(567);
+		
+		System.out.println(al);
+		
+		//to delete in arraylist
+		
+		al.remove(1);
+		
+		System.out.println(al);
+		
+	//add with index
+		
+		al.add(1,50);
+		
+		System.out.println(al);
+		
+		
+
+	}
+
+}

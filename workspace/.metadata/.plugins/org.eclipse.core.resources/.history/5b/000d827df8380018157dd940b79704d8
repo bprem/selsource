@@ -1,0 +1,48 @@
+/**
+ * 
+ */
+package PageObjectTest;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+
+/**
+ * @author LakshmananDeepthy
+ *
+ */
+public class InputFormsElements {
+	
+	
+	@FindBy(how=How.LINK_TEXT,using="Input Forms")
+	@CacheLookup
+	WebElement InputForm;
+	
+	
+	@FindBy(how=How.LINK_TEXT, using="Simple Form Demo")
+	@CacheLookup
+	WebElement SimpleForm;
+	
+	
+	@FindBy(how=How.ID, using="user-message")
+	@CacheLookup
+	WebElement SingleInputField;
+	
+	@FindBy(how=How.CLASS_NAME,using="btn btn-default")
+	WebElement ShowMessage;
+	
+	public void inputForm1()
+	{
+		InputForm.click();
+		SimpleForm.click();
+		SingleInputField.sendKeys("Hi Mamz");
+		ShowMessage.click();
+	}
+	
+	
+	
+	
+	
+
+}

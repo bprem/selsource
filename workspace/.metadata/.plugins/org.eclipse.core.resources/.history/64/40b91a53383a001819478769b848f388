@@ -1,0 +1,39 @@
+package InputFormsPageObjects;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+
+/**
+ * @author LakshmananDeepthy
+ *
+ */
+
+public class CheckBoxElements {
+	
+	
+	@FindBy(how=How.LINK_TEXT, using="Checkbox Demo")
+	@CacheLookup
+	WebElement CheckBox;
+	
+	@FindBy(how=How.ID, using = "isAgeSelected")
+	@CacheLookup
+	WebElement SingleCheckbox;
+	
+	public void checkBoxes1()
+	{
+		CheckBox.click();
+		SingleCheckbox.click();
+		if(SingleCheckbox.isSelected())
+		{
+			System.out.println("CheckbOx is selected");
+		}
+	}
+	
+	
+	
+	
+	
+
+}

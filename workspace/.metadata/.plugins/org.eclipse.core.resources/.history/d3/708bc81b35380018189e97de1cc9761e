@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package InputFormsTest;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
+
+import Browser.SelectBrowser;
+
+/**
+ * @author LakshmananDeepthy
+ *
+ */
+
+@Test
+public class SimpleFormDemoTest {
+
+WebDriver driver = SelectBrowser.selectBrowserandURL("Chrome", "http://www.seleniumeasy.com/test/");
+	
+	
+	
+	
+}

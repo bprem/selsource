@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <parameter name="pass" value="123"/>
+  <parameter name="username" value="123"/>
+  <test name="Test(failed)">
+    <parameter name="pass" value="123"/>
+    <parameter name="username" value="123"/>
+    <classes>
+      <class name="Test.Testngpro2">
+        <methods>
+          <include name="login"/>
+          <include name="Setup"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- Test.Testngpro2 -->
+      <class name="Test.Testngpro1">
+        <methods>
+          <include name="logout"/>
+          <include name="teardown"/>
+          <include name="login"/>
+          <include name="Setup"/>
+        </methods>
+      </class> <!-- Test.Testngpro1 -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
