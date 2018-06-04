@@ -1,0 +1,125 @@
+package ExcelPackage;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.NumberToTextConverter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class ExcelDemoQA {
+
+	public static void main(String[] args) throws InterruptedException, IOException, AWTException {
+		// TODO Auto-generated method stub
+
+		WebDriver driver = new FirefoxDriver();
+    	driver.get("http://demoqa.com/");
+    	driver.findElement(By.linkText("Registration")).click();
+    	
+    	Thread.sleep(2000);
+    	
+    	File excel = new File("D:\\Book2.xlsx");
+		FileInputStream fis = new FileInputStream(excel);
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		XSSFSheet sh = wb.getSheet("Sheet1");
+		String data = sh.getRow(0).getCell(0).getStringCellValue();
+		System.out.println(data);
+		
+		for (int i=0; i<=sh.getLastRowNum(); i++)
+		{
+			driver.findElement(By.id("name_3_firstname")).sendKeys(sh.getRow(i).getCell(0).getStringCellValue());
+	    	driver.findElement(By.id("name_3_lastname")).sendKeys(sh.getRow(i).getCell(1).getStringCellValue());
+			
+	    	List <WebElement> radios = driver.findElements(By.xpath("//input[@type='radio']"));
+	    	
+	    	for (WebElement radio:radios)
+	    	{
+	    		String value1 = radio.getAttribute("value");
+	    		//System.out.println(value1);
+	    		if (value1.equalsIgnoreCase(sh.getRow(i).getCell(2).getStringCellValue()))
+	    		{
+	    			radio.click();
+	    			break; 
+	    		}
+	    	}
+
+	    	List <WebElement> checkboxes = driver.findElements(By.xpath("//input[@type='checkbox']"));
+	    	
+	    	for (WebElement cbox:checkboxes)
+	    	{
+	    		String value2 = cbox.getAttribute("value");
+	    		//System.out.println(value2);
+	    		if (value2.equalsIgnoreCase(sh.getRow(i).getCell(3).getStringCellValue()) || value2.equalsIgnoreCase(sh.getRow(i).getCell(4).getStringCellValue()))
+	    		{
+	    			cbox.click();
+	    		}
+	    	}
+	    	
+	    	WebElement country = driver.findElement(By.id("dropdown_7"));
+	    	Select countrySelection = new Select(country);
+	    	countrySelection.selectByValue(sh.getRow(i).getCell(5).getStringCellValue());
+	    	
+	    	WebElement month = driver.findElement(By.id("mm_date_8"));
+	    	Select monthSelection = new Select(month);
+	    	int myMonth = (int) sh.getRow(i).getCell(6).getNumericCellValue();
+	    	monthSelection.selectByValue(Integer.toString(myMonth));
+	    	
+	    	WebElement day = driver.findElement(By.id("dd_date_8"));
+	    	Select daySelection = new Select(day);
+	    	int myDay = (int) sh.getRow(i).getCell(7).getNumericCellValue();
+	    	daySelection.selectByValue(Integer.toString(myDay));
+	    	
+	    	WebElement year = driver.findElement(By.id("yy_date_8"));
+	    	Select yearSelection = new Select(year);
+	    	int myYear = (int) sh.getRow(i).getCell(8).getNumericCellValue();
+	    	yearSelection.selectByValue(Integer.toString(myYear));
+	    	
+	    	WebElement phone = driver.findElement(By.id("phone_9"));
+	    	String myPhone = NumberToTextConverter.toText(sh.getRow(i).getCell(9).getNumericCellValue());
+	    	phone.sendKeys(myPhone);
+	    	
+	    	driver.findElement(By.id("username")).sendKeys(sh.getRow(i).getCell(10).getStringCellValue());
+	    	driver.findElement(By.id("email_1")).sendKeys(sh.getRow(i).getCell(11).getStringCellValue());
+	    	
+	    	driver.findElement(By.id("password_2")).sendKeys(sh.getRow(i).getCell(12).getStringCellValue());
+	    	driver.findElement(By.id("confirm_password_password_2")).sendKeys(sh.getRow(i).getCell(13).getStringCellValue());
+	    	
+	    	driver.findElement(By.id("profile_pic_10")).click();   	
+	    	StringSelection fn = new StringSelection(sh.getRow(i).getCell(14).getStringCellValue());
+	    	Toolkit.getDefaultToolkit().getSystemClipboard().setContents(fn,null);
+	    	
+	    	Robot fu = new Robot();
+	    	fu.keyPress(KeyEvent.VK_CONTROL);
+	    	fu.keyPress(KeyEvent.VK_V);
+	    	fu.keyRelease(KeyEvent.VK_V);
+	    	fu.keyRelease(KeyEvent.VK_CONTROL);
+	    	fu.keyPress(KeyEvent.VK_ENTER);
+	    	//fu.keyPress(KeyEvent.VK_ENTER);
+	    	//fu.keyPress(KeyEvent.VK_ENTER);
+	    	
+	    	Thread.sleep(5000);
+	    	
+	    	driver.navigate().refresh();
+		}
+    	
+    	//driver.findElement(By.name("pie_submit")).click();
+    	
+    	//driver.close();
+	}
+
+}
