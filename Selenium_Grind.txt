@@ -1,0 +1,10 @@
+Selenium Grid: in two different machine
+
+Keep selenium-server-standalone-2.53.1.jar file in both machine in some location.
+Open command prompt in both machine and navigate to the location where we kept the jar file.
+	Tips: go to the folder and Shift+Right Mouse click
+	This will open command prompt in particular location.
+	Example: I kept my jar file in Desktop/Selenium folder. So i went to Selenium folder and Shift+Right Click and i got my command prompt.
+
+	
+C:\Users\VinothKumar\Desktop\Vinoth\Selenium>java -jar selenium-server-standalone-2.53.1.jar -role hub
